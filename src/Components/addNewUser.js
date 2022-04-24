@@ -38,7 +38,7 @@ class AddNewUser extends Component {
         this.setState(() => ({
             isexist: isexit
         }))
-        alert(isexit);
+      
         if (isexit) return;
         this.props.adduserfunc(
             {

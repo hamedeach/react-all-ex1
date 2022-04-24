@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import UserProfile from './userprofile';
 
-/*
-This presentational component can just be a Stateless Functional Component.
+class User extends Component {
 
-You'll see this pattern often - a component for a thing and a component for a list
-of those things.
-*/
-const User = props => {
-  return (
-    <li>
-      {props.userobj.username}
-      <span>
-       <UserProfile profile={props.profileobj}/>
-      </span>
-    </li>
+  state ={
+    IsProfileDisplayed :true,
+  }
+
+  OnClickProfileBtn = event => 
+  {
+    this.setState((prevstate) => ({
+      IsProfileDisplayed: ! prevstate.IsProfileDisplayed
+  }))
+
+  }
+
+
+  render() {
+    return (
+      <li>
+        {this.props.userobj.username}
+        <span>
+          <UserProfile profile={this.props.profileobj} isprofiledisplayed={this.state.IsProfileDisplayed}  onclickFunc={this.OnClickProfileBtn}/>
+        </span>
+
+      </li>
     )
-};
+  };
+}
 
 User.propTypes = {
   userobj: PropTypes.object.isRequired,
